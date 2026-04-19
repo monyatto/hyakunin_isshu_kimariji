@@ -575,7 +575,7 @@ export const cards = [
     id: 71, author: '大納言経信',
     kamiNoKu: '夕されば 門田の稲葉 おとづれて',
     shimoNoKu: '芦のまろ屋に 秋風ぞ吹く',
-    kimariji: 'ゆふ', leadingChar: 'ゆ',
+    kimariji: 'ゆう', leadingChar: 'ゆ',
     translation: '夕方になると門前の田の稲葉をそよがせて、芦葺きの粗末な家に秋風が吹いてくる。',
     explanation: '源経信。田園の清新な秋の景。'
   },
