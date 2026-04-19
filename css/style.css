@@ -1,0 +1,340 @@
+/* リセット */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow-x: hidden; }
+
+body {
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255,240,200,0.5) 0%, transparent 60%),
+    radial-gradient(circle at 80% 90%, rgba(200,130,90,0.15) 0%, transparent 55%),
+    #efe2c4;
+  color: #3b2a1a;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 20px 16px;
+  position: relative;
+}
+
+h1 {
+  text-align: center;
+  font-size: 30px;
+  line-height: 1.6;
+  margin: 48px 0 56px;
+  color: #7a1f1f;
+  letter-spacing: 0.2em;
+  position: relative;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+}
+h1::before,
+h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #8b3a3a, transparent);
+  margin: 16px auto;
+}
+
+h2 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 24px;
+  color: #8b3a3a;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  margin: 12px 0;
+  font-size: 18px;
+  border: 1px solid #8b3a3a;
+  border-radius: 2px;
+  background: linear-gradient(to bottom, #fffcf3 0%, #fcf1d8 100%);
+  color: #7a1f1f;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.2em;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 4px rgba(139,58,58,0.15), inset 0 0 0 1px rgba(139,58,58,0.1);
+}
+button:active {
+  background: linear-gradient(to bottom, #8b3a3a 0%, #7a1f1f 100%);
+  color: #fff8e7;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.screen {
+  animation: fadein 0.2s;
+}
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- ゲーム画面 --- */
+.game-screen {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 40px);
+  height: calc(100dvh - 40px);
+  overflow: hidden;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 4px;
+}
+
+.prev-kimariji {
+  font-size: 24px;
+  font-weight: bold;
+  color: #8b3a3a;
+  letter-spacing: 0.1em;
+  min-height: 32px;
+}
+
+.progress {
+  font-size: 14px;
+  color: #7a5a3a;
+}
+
+.card-area {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  position: relative;
+}
+
+.card {
+  width: 80%;
+  max-width: 320px;
+  max-height: 100%;
+  aspect-ratio: 2 / 3;
+  background:
+    repeating-linear-gradient(135deg, rgba(200,160,120,0.04) 0 2px, transparent 2px 10px),
+    linear-gradient(to bottom, #fffbe8 0%, #fff4d1 100%);
+  border: 1px solid #8b3a3a;
+  border-radius: 4px;
+  box-shadow:
+    0 6px 16px rgba(80,30,20,0.25),
+    inset 0 0 0 4px #fffbe8,
+    inset 0 0 0 5px #c9a86a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  transition: transform 0.15s;
+  cursor: pointer;
+}
+
+.shimo-no-ku {
+  writing-mode: vertical-rl;
+  font-size: 28px;
+  line-height: 1.9;
+  letter-spacing: 0.15em;
+  color: #3b2a1a;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif;
+}
+
+.shimo-line {
+  display: block;
+  white-space: nowrap;
+  padding-left: 0.3em;
+}
+
+.swipe-hint {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #a88868;
+  letter-spacing: 0.1em;
+}
+
+.game-footer {
+  display: flex;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.footer-btn {
+  flex: 1;
+  margin: 0;
+  padding: 12px;
+  font-size: 14px;
+}
+
+.empty-msg {
+  text-align: center;
+  font-size: 18px;
+  color: #8b3a3a;
+  margin: 48px 0;
+}
+
+/* --- 結果画面 --- */
+.result-screen {
+  padding-top: 32px;
+}
+
+/* --- 設定画面 --- */
+.settings-section {
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #fff8e7;
+  border: 1px solid #d9c9a8;
+  border-radius: 6px;
+}
+
+.settings-section h3 {
+  font-size: 16px;
+  color: #8b3a3a;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e0d0b0;
+}
+
+.cat-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 4px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.cat-item input[type="checkbox"] {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  accent-color: #8b3a3a;
+}
+
+.cat-all {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+/* --- 解説画面（一覧） --- */
+.card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  border: 1px solid #d9c9a8;
+  border-radius: 6px;
+  background: #fff8e7;
+  overflow: hidden;
+}
+
+.card-list-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eadfc4;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.card-list-item:last-child { border-bottom: none; }
+.card-list-item:active { background: #f0e3c2; }
+
+.card-num {
+  display: inline-block;
+  width: 36px;
+  font-size: 13px;
+  color: #8b3a3a;
+  text-align: right;
+  margin-right: 12px;
+  font-weight: bold;
+}
+
+.card-preview {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.preview-kami {
+  font-size: 14px;
+  color: #3b2a1a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.preview-author {
+  font-size: 11px;
+  color: #8a7050;
+  margin-top: 2px;
+}
+
+/* --- 解説画面（詳細） --- */
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.back-btn {
+  width: auto;
+  margin: 0;
+  padding: 6px 12px;
+  font-size: 13px;
+  background: transparent;
+  color: #8b3a3a;
+  border: 1px solid #8b3a3a;
+}
+
+.detail-num {
+  font-size: 16px;
+  color: #8b3a3a;
+  font-weight: bold;
+}
+
+.detail-body {
+  background: #fff8e7;
+  border: 1px solid #d9c9a8;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.detail-row {
+  margin-bottom: 14px;
+}
+.detail-row:last-child { margin-bottom: 0; }
+
+.detail-label {
+  font-size: 12px;
+  color: #8a7050;
+  margin-bottom: 4px;
+  letter-spacing: 0.1em;
+}
+
+.detail-value {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #3b2a1a;
+}
+
+.kimariji-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #8b3a3a;
+  letter-spacing: 0.15em;
+}
+
+
